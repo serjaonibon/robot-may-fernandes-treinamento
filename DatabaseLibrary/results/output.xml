@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3.2 (Python 3.13.2 on win32)" generated="2025-10-11T19:36:09.373487" rpa="false" schemaversion="5">
+<suite id="s1" name="DatabaseLibrary" source="C:\RobotMay\DatabaseLibrary">
+<suite id="s1-s1" name="Database" source="C:\RobotMay\DatabaseLibrary\database.robot">
+<test id="s1-s1-t1" name="Exemplo 01: Executando scripts SQL via Arquivos" line="15">
+<kw name="Conectar no Banco de Dados" type="SETUP">
+<kw name="Connect To Database" owner="DatabaseLibrary">
+<msg time="2025-10-11T19:36:09.557955" level="INFO">Looking for configuration file: 'resources\db.cfg'</msg>
+<msg time="2025-10-11T19:36:09.558149" level="INFO">Configuration file doesn't exist</msg>
+<msg time="2025-10-11T19:36:09.579865" level="INFO">Connect to DB using : psycopg2.connect(database='robot', user='postgres', password=***, host='localhost', port=5432)</msg>
+<arg>db_module=psycopg2</arg>
+<arg>db_name=robot</arg>
+<arg>db_user=postgres</arg>
+<arg>db_password=1234</arg>
+<arg>db_host=localhost</arg>
+<arg>db_port=5432</arg>
+<doc>Creates a database connection using the DB API 2.0 ``db_module`` and the parameters provided.
+Along with listed commonly used arguments (`db_name`, `db_host` etc.)
+you can set any other DB module specific parameters as key/value pairs.</doc>
+<status status="PASS" start="2025-10-11T19:36:09.557509" elapsed="0.118940"/>
+</kw>
+<status status="PASS" start="2025-10-11T19:36:09.556296" elapsed="0.120360"/>
+</kw>
+<kw name="Executar script via ARQUIVO no Banco de Dados">
+<kw name="Execute Sql Script" owner="DatabaseLibrary">
+<msg time="2025-10-11T19:36:09.677830" level="FAIL">Keyword 'DatabaseLibrary.Execute Sql Script' expected 1 to 4 non-named arguments, got 0.</msg>
+<arg>sqlScriptFileName=${FILE}</arg>
+<doc>Executes the content of the SQL script file loaded from `script_path` as SQL commands.</doc>
+<status status="FAIL" start="2025-10-11T19:36:09.677596" elapsed="0.000289">Keyword 'DatabaseLibrary.Execute Sql Script' expected 1 to 4 non-named arguments, got 0.</status>
+</kw>
+<arg>C:\\RobotMay\\DatabaseLibrary/my_sql_scripts/create_table_accounts.sql</arg>
+<status status="FAIL" start="2025-10-11T19:36:09.677111" elapsed="0.000931">Keyword 'DatabaseLibrary.Execute Sql Script' expected 1 to 4 non-named arguments, got 0.</status>
+</kw>
+<kw name="Executar script via ARQUIVO no Banco de Dados">
+<arg>C:\\RobotMay\\DatabaseLibrary/my_sql_scripts/insert_into_account.sql</arg>
+<status status="NOT RUN" start="2025-10-11T19:36:09.678310" elapsed="0.000032"/>
+</kw>
+<kw name="Confere se &quot;May Fernandes&quot; foi inserido com sucesso" source_name="Confere se &quot;${USER}&quot; foi inserido com sucesso">
+<status status="NOT RUN" start="2025-10-11T19:36:09.678599" elapsed="0.000042"/>
+</kw>
+<kw name="Desconectar do Banco de Dados" type="TEARDOWN">
+<kw name="Disconnect From Database" owner="DatabaseLibrary">
+<doc>Disconnects from the database.</doc>
+<status status="PASS" start="2025-10-11T19:36:09.679284" elapsed="0.000232"/>
+</kw>
+<status status="PASS" start="2025-10-11T19:36:09.678988" elapsed="0.000605"/>
+</kw>
+<status status="FAIL" start="2025-10-11T19:36:09.554211" elapsed="0.125756">Keyword 'DatabaseLibrary.Execute Sql Script' expected 1 to 4 non-named arguments, got 0.</status>
+</test>
+<test id="s1-s1-t2" name="Exemplo 02: Executando scripts SQL via STRING" line="20">
+<kw name="Conectar no Banco de Dados" type="SETUP">
+<kw name="Connect To Database" owner="DatabaseLibrary">
+<msg time="2025-10-11T19:36:09.683709" level="INFO">Looking for configuration file: 'resources\db.cfg'</msg>
+<msg time="2025-10-11T19:36:09.683910" level="INFO">Configuration file doesn't exist</msg>
+<msg time="2025-10-11T19:36:09.684186" level="INFO">Connect to DB using : psycopg2.connect(database='robot', user='postgres', password=***, host='localhost', port=5432)</msg>
+<arg>db_module=psycopg2</arg>
+<arg>db_name=robot</arg>
+<arg>db_user=postgres</arg>
+<arg>db_password=1234</arg>
+<arg>db_host=localhost</arg>
+<arg>db_port=5432</arg>
+<doc>Creates a database connection using the DB API 2.0 ``db_module`` and the parameters provided.
+Along with listed commonly used arguments (`db_name`, `db_host` etc.)
+you can set any other DB module specific parameters as key/value pairs.</doc>
+<status status="PASS" start="2025-10-11T19:36:09.683272" elapsed="0.077922"/>
+</kw>
+<status status="PASS" start="2025-10-11T19:36:09.682870" elapsed="0.078560"/>
+</kw>
+<kw name="Executar script via STRING no Banco de Dados">
+<kw name="Execute Sql String" owner="DatabaseLibrary">
+<msg time="2025-10-11T19:36:09.763016" level="FAIL">Keyword 'DatabaseLibrary.Execute Sql String' expected 1 to 5 non-named arguments, got 0.</msg>
+<arg>sqlString=${SCRIPT}</arg>
+<doc>Executes the ``sql_string`` as a single SQL command.</doc>
+<status status="FAIL" start="2025-10-11T19:36:09.762658" elapsed="0.000453">Keyword 'DatabaseLibrary.Execute Sql String' expected 1 to 5 non-named arguments, got 0.</status>
+</kw>
+<arg>INSERT INTO public.account(user_id, username, password, email) VALUES (2, 'Luiz Silva', 'robot987', 'robotizando2@robot.com')</arg>
+<status status="FAIL" start="2025-10-11T19:36:09.762034" elapsed="0.001348">Keyword 'DatabaseLibrary.Execute Sql String' expected 1 to 5 non-named arguments, got 0.</status>
+</kw>
+<kw name="Confere se &quot;Luiz Silva&quot; foi inserido com sucesso" source_name="Confere se &quot;${USER}&quot; foi inserido com sucesso">
+<status status="NOT RUN" start="2025-10-11T19:36:09.763989" elapsed="0.000087"/>
+</kw>
+<kw name="Desconectar do Banco de Dados" type="TEARDOWN">
+<kw name="Disconnect From Database" owner="DatabaseLibrary">
+<doc>Disconnects from the database.</doc>
+<status status="PASS" start="2025-10-11T19:36:09.765600" elapsed="0.000653"/>
+</kw>
+<status status="PASS" start="2025-10-11T19:36:09.764833" elapsed="0.001643"/>
+</kw>
+<status status="FAIL" start="2025-10-11T19:36:09.681377" elapsed="0.085438">Keyword 'DatabaseLibrary.Execute Sql String' expected 1 to 5 non-named arguments, got 0.</status>
+</test>
+<test id="s1-s1-t3" name="Exemplo 03: Select Statement" line="24">
+<kw name="Conectar no Banco de Dados" type="SETUP">
+<kw name="Connect To Database" owner="DatabaseLibrary">
+<msg time="2025-10-11T19:36:09.770696" level="INFO">Looking for configuration file: 'resources\db.cfg'</msg>
+<msg time="2025-10-11T19:36:09.770941" level="INFO">Configuration file doesn't exist</msg>
+<msg time="2025-10-11T19:36:09.771404" level="INFO">Connect to DB using : psycopg2.connect(database='robot', user='postgres', password=***, host='localhost', port=5432)</msg>
+<arg>db_module=psycopg2</arg>
+<arg>db_name=robot</arg>
+<arg>db_user=postgres</arg>
+<arg>db_password=1234</arg>
+<arg>db_host=localhost</arg>
+<arg>db_port=5432</arg>
+<doc>Creates a database connection using the DB API 2.0 ``db_module`` and the parameters provided.
+Along with listed commonly used arguments (`db_name`, `db_host` etc.)
+you can set any other DB module specific parameters as key/value pairs.</doc>
+<status status="PASS" start="2025-10-11T19:36:09.770156" elapsed="0.080793"/>
+</kw>
+<status status="PASS" start="2025-10-11T19:36:09.769553" elapsed="0.081557"/>
+</kw>
+<kw name="Executar query no Banco de dados">
+<kw name="Query" owner="DatabaseLibrary">
+<msg time="2025-10-11T19:36:09.852115" level="FAIL">Keyword 'DatabaseLibrary.Query' expected 1 to 5 non-named arguments, got 0.</msg>
+<var>${RESPONSE_QUERY}</var>
+<arg>selectStatement=${QUERY}</arg>
+<doc>Runs a query with the ``select_statement`` and returns the result as list of rows.
+The type of row values depends on the database module -
+usually they are tuples or tuple-like objects.</doc>
+<status status="FAIL" start="2025-10-11T19:36:09.851927" elapsed="0.000240">Keyword 'DatabaseLibrary.Query' expected 1 to 5 non-named arguments, got 0.</status>
+</kw>
+<return>
+<value>${RESPONSE_QUERY}</value>
+<status status="NOT RUN" start="2025-10-11T19:36:09.852262" elapsed="0.000040"/>
+</return>
+<var>${RESPOSTA_SELECT}</var>
+<arg>SELECT * from account</arg>
+<status status="FAIL" start="2025-10-11T19:36:09.851530" elapsed="0.000892">Keyword 'DatabaseLibrary.Query' expected 1 to 5 non-named arguments, got 0.</status>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<arg>${RESPOSTA_SELECT}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2025-10-11T19:36:09.853108" elapsed="0.000070"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<arg>Usuário ${RESPOSTA_SELECT[0][0]} - Nome: ${RESPOSTA_SELECT[0][1]} - E-mail: ${RESPOSTA_SELECT[0][3]}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2025-10-11T19:36:09.853663" elapsed="0.000033"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<arg>Usuário ${RESPOSTA_SELECT[1][0]} - Nome: ${RESPOSTA_SELECT[1][1]} - E-mail: ${RESPOSTA_SELECT[1][3]}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2025-10-11T19:36:09.853932" elapsed="0.000030"/>
+</kw>
+<kw name="Desconectar do Banco de Dados" type="TEARDOWN">
+<kw name="Disconnect From Database" owner="DatabaseLibrary">
+<doc>Disconnects from the database.</doc>
+<status status="PASS" start="2025-10-11T19:36:09.854738" elapsed="0.000243"/>
+</kw>
+<status status="PASS" start="2025-10-11T19:36:09.854357" elapsed="0.000707"/>
+</kw>
+<status status="FAIL" start="2025-10-11T19:36:09.768344" elapsed="0.086907">Keyword 'DatabaseLibrary.Query' expected 1 to 5 non-named arguments, got 0.</status>
+</test>
+<test id="s1-s1-t4" name="Exemplo 04: Limpando Tabelas" line="31">
+<kw name="Conectar no Banco de Dados" type="SETUP">
+<kw name="Connect To Database" owner="DatabaseLibrary">
+<msg time="2025-10-11T19:36:09.858581" level="INFO">Looking for configuration file: 'resources\db.cfg'</msg>
+<msg time="2025-10-11T19:36:09.858818" level="INFO">Configuration file doesn't exist</msg>
+<msg time="2025-10-11T19:36:09.859089" level="INFO">Connect to DB using : psycopg2.connect(database='robot', user='postgres', password=***, host='localhost', port=5432)</msg>
+<arg>db_module=psycopg2</arg>
+<arg>db_name=robot</arg>
+<arg>db_user=postgres</arg>
+<arg>db_password=1234</arg>
+<arg>db_host=localhost</arg>
+<arg>db_port=5432</arg>
+<doc>Creates a database connection using the DB API 2.0 ``db_module`` and the parameters provided.
+Along with listed commonly used arguments (`db_name`, `db_host` etc.)
+you can set any other DB module specific parameters as key/value pairs.</doc>
+<status status="PASS" start="2025-10-11T19:36:09.858006" elapsed="0.078765"/>
+</kw>
+<status status="PASS" start="2025-10-11T19:36:09.857399" elapsed="0.079533"/>
+</kw>
+<kw name="Limpar Tabela">
+<kw name="Row Count" owner="DatabaseLibrary">
+<msg time="2025-10-11T19:36:09.938023" level="FAIL">Keyword 'DatabaseLibrary.Row Count' expected 1 to 4 non-named arguments, got 0.</msg>
+<var>${REGISTROS}</var>
+<arg>selectStatement=SELECT * FROM ${TABELA}</arg>
+<doc>Runs a query with the ``select_statement`` and returns the number of rows in the result.</doc>
+<status status="FAIL" start="2025-10-11T19:36:09.937800" elapsed="0.000277">Keyword 'DatabaseLibrary.Row Count' expected 1 to 4 non-named arguments, got 0.</status>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>${REGISTROS} &gt; 0</arg>
+<arg>Delete All Rows From Table</arg>
+<arg>${TABELA}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="NOT RUN" start="2025-10-11T19:36:09.938259" elapsed="0.000029"/>
+</kw>
+<arg>account</arg>
+<status status="FAIL" start="2025-10-11T19:36:09.937357" elapsed="0.001056">Keyword 'DatabaseLibrary.Row Count' expected 1 to 4 non-named arguments, got 0.</status>
+</kw>
+<kw name="Executar script via STRING no Banco de Dados">
+<arg>DROP table account</arg>
+<status status="NOT RUN" start="2025-10-11T19:36:09.938693" elapsed="0.000032"/>
+</kw>
+<kw name="Desconectar do Banco de Dados" type="TEARDOWN">
+<kw name="Disconnect From Database" owner="DatabaseLibrary">
+<doc>Disconnects from the database.</doc>
+<status status="PASS" start="2025-10-11T19:36:09.939349" elapsed="0.000222"/>
+</kw>
+<status status="PASS" start="2025-10-11T19:36:09.939055" elapsed="0.000605"/>
+</kw>
+<status status="FAIL" start="2025-10-11T19:36:09.856544" elapsed="0.083259">Keyword 'DatabaseLibrary.Row Count' expected 1 to 4 non-named arguments, got 0.</status>
+</test>
+<doc>[14/10/2019] https://franz-see.github.io/Robotframework-Database-Library/api/1.2.2/DatabaseLibrary.html
+Instale: "pip install -U robotframework-databaselibrary"
+Para acessar o BD o Robot precisa conhecer o DRIVER de cada banco, então precisamos instalar esse DRIVER também (instale apenas para o BD que você utiliza!) ...
+Para PostgreSQL: "pip install psycopg2"
+Para SQLite 3: não precisa instalar nada!
+Para MySQL: "pip install pymysql"
+Para SQL Server: "pip install pymssql"
+Para Oracle: "pip install cx-Oracle"</doc>
+<status status="FAIL" start="2025-10-11T19:36:09.457000" elapsed="0.484184"/>
+</suite>
+<status status="FAIL" start="2025-10-11T19:36:09.376259" elapsed="0.567818"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="4" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="DatabaseLibrary" id="s1" pass="0" fail="4" skip="0">DatabaseLibrary</stat>
+<stat name="Database" id="s1-s1" pass="0" fail="4" skip="0">DatabaseLibrary.Database</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2025-10-11T19:36:09.361255" level="WARN">Error in file 'C:\RobotMay\DatabaseLibrary\database.robot' on line 62: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+</errors>
+</robot>

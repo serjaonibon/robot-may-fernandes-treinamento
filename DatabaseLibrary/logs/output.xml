@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3 (Python 3.13.2 on win32)" generated="2025-10-11T19:54:20.356520" rpa="false" schemaversion="5">
+<suite id="s1" name="Database" source="C:\RobotMay\DatabaseLibrary\database.robot">
+<test id="s1-t1" name="Exemplo 01: Executando scripts SQL via Arquivos" line="20">
+<kw name="Conectar no Banco de Dados" type="SETUP">
+<kw name="Connect To Database" owner="DatabaseLibrary">
+<msg time="2025-10-11T19:54:20.501260" level="INFO">Looking for configuration file: 'resources\db.cfg'</msg>
+<msg time="2025-10-11T19:54:20.501461" level="INFO">Configuration file doesn't exist</msg>
+<msg time="2025-10-11T19:54:20.534709" level="INFO">Connect to DB using : psycopg2.connect(database='robot', user='postgres', password=***, host='localhost', port=5432)</msg>
+<arg>db_module=psycopg2</arg>
+<arg>db_name=robot</arg>
+<arg>db_user=postgres</arg>
+<arg>db_password=1234</arg>
+<arg>db_host=localhost</arg>
+<arg>db_port=5432</arg>
+<doc>Creates a database connection using the DB API 2.0 ``db_module`` and the parameters provided.
+Along with listed commonly used arguments (`db_name`, `db_host` etc.)
+you can set any other DB module specific parameters as key/value pairs.</doc>
+<status status="PASS" start="2025-10-11T19:54:20.500779" elapsed="0.152271"/>
+</kw>
+<status status="PASS" start="2025-10-11T19:54:20.500008" elapsed="0.153356"/>
+</kw>
+<kw name="Executar script via ARQUIVO no Banco de Dados">
+<kw name="Execute Sql Script" owner="DatabaseLibrary">
+<msg time="2025-10-11T19:54:20.655200" level="INFO">Splitting script file into statements...</msg>
+<msg time="2025-10-11T19:54:20.656656" level="INFO" html="true">Executing sql:&lt;br&gt;&lt;code style="font-weight: bold;"&gt;CREATE TABLE account( user_id serial PRIMARY KEY, username VARCHAR (50) UNIQUE NOT NULL, password VARCHAR (50) NOT NULL, email VARCHAR (355) UNIQUE NOT NULL )&lt;/code&gt;</msg>
+<msg time="2025-10-11T19:54:20.685590" level="INFO">Commit the transaction</msg>
+<arg>${FILE}</arg>
+<doc>Executes the content of the SQL script file loaded from `script_path` as SQL commands.</doc>
+<status status="PASS" start="2025-10-11T19:54:20.654653" elapsed="0.033295"/>
+</kw>
+<arg>C:\\RobotMay\\DatabaseLibrary/my_sql_scripts/create_table_accounts.sql</arg>
+<status status="PASS" start="2025-10-11T19:54:20.653978" elapsed="0.034263"/>
+</kw>
+<kw name="Executar script via ARQUIVO no Banco de Dados">
+<kw name="Execute Sql Script" owner="DatabaseLibrary">
+<msg time="2025-10-11T19:54:20.690141" level="INFO">Splitting script file into statements...</msg>
+<msg time="2025-10-11T19:54:20.690373" level="INFO" html="true">Executing sql:&lt;br&gt;&lt;code style="font-weight: bold;"&gt;INSERT INTO account (user_id, username, password, email) VALUES (1, 'May Fernandes', 'robot123', 'robotizando@robot.com')&lt;/code&gt;</msg>
+<msg time="2025-10-11T19:54:20.694825" level="INFO">Commit the transaction</msg>
+<arg>${FILE}</arg>
+<doc>Executes the content of the SQL script file loaded from `script_path` as SQL commands.</doc>
+<status status="PASS" start="2025-10-11T19:54:20.689772" elapsed="0.005536"/>
+</kw>
+<arg>C:\\RobotMay\\DatabaseLibrary/my_sql_scripts/insert_into_account.sql</arg>
+<status status="PASS" start="2025-10-11T19:54:20.689124" elapsed="0.006326"/>
+</kw>
+<kw name="Confere se &quot;May Fernandes&quot; foi inserido com sucesso" source_name="Confere se &quot;${USER}&quot; foi inserido com sucesso">
+<kw name="Row Count" owner="DatabaseLibrary">
+<msg time="2025-10-11T19:54:20.696567" level="INFO" html="true">Executing sql:&lt;br&gt;&lt;code style="font-weight: bold;"&gt;SELECT username FROM account WHERE username = 'May Fernandes'&lt;/code&gt;</msg>
+<msg time="2025-10-11T19:54:20.697966" level="INFO">Commit the transaction</msg>
+<msg time="2025-10-11T19:54:20.698143" level="INFO">Retrieved 1 rows</msg>
+<msg time="2025-10-11T19:54:20.698209" level="INFO" html="true">&lt;div style="max-width: 100%; overflow-x: auto; max-height: 500px; overflow-y: auto;"&gt;&lt;table style="width: auto; border-collapse: collapse; border: 2px solid rgb(140 140 140)"&gt;&lt;caption style="text-align: left; font-weight: bold; padding: 5px;"&gt;Query returned 1 rows&lt;/caption&gt;&lt;tr&gt;&lt;th scope="col" style="position: sticky; top: 0; color:black; background-color: #d6ecd4; border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;Row&lt;/th&gt;&lt;th scope="col" style="position: sticky; top: 0; background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;username&lt;/th&gt;&lt;/tr&gt;&lt;tr style="background-color: var(--secondary-color, #eee)"&gt;&lt;th scope="row" style="color:black; background-color: #d6ecd4;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;0&lt;/th&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;May Fernandes&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</msg>
+<msg time="2025-10-11T19:54:20.698370" level="INFO">${count} = 1</msg>
+<var>${count}</var>
+<arg>SELECT username FROM account WHERE username = '${USER}'</arg>
+<doc>Runs a query with the ``select_statement`` and returns the number of rows in the result.</doc>
+<status status="PASS" start="2025-10-11T19:54:20.696308" elapsed="0.002115"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-10-11T19:54:20.698903" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${count}</arg>
+<arg>1</arg>
+<arg>Registro para o usuário '${USER}' não encontrado</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-10-11T19:54:20.698601" elapsed="0.000398"/>
+</kw>
+<status status="PASS" start="2025-10-11T19:54:20.695898" elapsed="0.003206"/>
+</kw>
+<kw name="Desconectar do Banco de Dados" type="TEARDOWN">
+<kw name="Disconnect From Database" owner="DatabaseLibrary">
+<doc>Disconnects from the database.</doc>
+<status status="PASS" start="2025-10-11T19:54:20.699974" elapsed="0.000304"/>
+</kw>
+<status status="PASS" start="2025-10-11T19:54:20.699648" elapsed="0.000791"/>
+</kw>
+<status status="PASS" start="2025-10-11T19:54:20.498845" elapsed="0.201865"/>
+</test>
+<test id="s1-t2" name="Exemplo 02: Executando scripts SQL via STRING" line="25">
+<kw name="Conectar no Banco de Dados" type="SETUP">
+<kw name="Connect To Database" owner="DatabaseLibrary">
+<msg time="2025-10-11T19:54:20.704545" level="INFO">Looking for configuration file: 'resources\db.cfg'</msg>
+<msg time="2025-10-11T19:54:20.704782" level="INFO">Configuration file doesn't exist</msg>
+<msg time="2025-10-11T19:54:20.705333" level="INFO">Connect to DB using : psycopg2.connect(database='robot', user='postgres', password=***, host='localhost', port=5432)</msg>
+<arg>db_module=psycopg2</arg>
+<arg>db_name=robot</arg>
+<arg>db_user=postgres</arg>
+<arg>db_password=1234</arg>
+<arg>db_host=localhost</arg>
+<arg>db_port=5432</arg>
+<doc>Creates a database connection using the DB API 2.0 ``db_module`` and the parameters provided.
+Along with listed commonly used arguments (`db_name`, `db_host` etc.)
+you can set any other DB module specific parameters as key/value pairs.</doc>
+<status status="PASS" start="2025-10-11T19:54:20.703974" elapsed="0.103102"/>
+</kw>
+<status status="PASS" start="2025-10-11T19:54:20.703364" elapsed="0.103981"/>
+</kw>
+<kw name="Executar script via STRING no Banco de Dados">
+<kw name="Execute Sql String" owner="DatabaseLibrary">
+<msg time="2025-10-11T19:54:20.808968" level="INFO" html="true">Executing sql:&lt;br&gt;&lt;code style="font-weight: bold;"&gt;INSERT INTO public.account(user_id, username, password, email) VALUES (2, 'Luiz Silva', 'robot987', 'robotizando2@robot.com')&lt;/code&gt;</msg>
+<msg time="2025-10-11T19:54:20.812227" level="INFO">Commit the transaction</msg>
+<arg>${SCRIPT}</arg>
+<doc>Executes the ``sql_string`` as a single SQL command.</doc>
+<status status="PASS" start="2025-10-11T19:54:20.808634" elapsed="0.005248"/>
+</kw>
+<arg>INSERT INTO public.account(user_id, username, password, email) VALUES (2, 'Luiz Silva', 'robot987', 'robotizando2@robot.com')</arg>
+<status status="PASS" start="2025-10-11T19:54:20.807973" elapsed="0.006120"/>
+</kw>
+<kw name="Confere se &quot;Luiz Silva&quot; foi inserido com sucesso" source_name="Confere se &quot;${USER}&quot; foi inserido com sucesso">
+<kw name="Row Count" owner="DatabaseLibrary">
+<msg time="2025-10-11T19:54:20.816019" level="INFO" html="true">Executing sql:&lt;br&gt;&lt;code style="font-weight: bold;"&gt;SELECT username FROM account WHERE username = 'Luiz Silva'&lt;/code&gt;</msg>
+<msg time="2025-10-11T19:54:20.821486" level="INFO">Commit the transaction</msg>
+<msg time="2025-10-11T19:54:20.821772" level="INFO">Retrieved 1 rows</msg>
+<msg time="2025-10-11T19:54:20.821877" level="INFO" html="true">&lt;div style="max-width: 100%; overflow-x: auto; max-height: 500px; overflow-y: auto;"&gt;&lt;table style="width: auto; border-collapse: collapse; border: 2px solid rgb(140 140 140)"&gt;&lt;caption style="text-align: left; font-weight: bold; padding: 5px;"&gt;Query returned 1 rows&lt;/caption&gt;&lt;tr&gt;&lt;th scope="col" style="position: sticky; top: 0; color:black; background-color: #d6ecd4; border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;Row&lt;/th&gt;&lt;th scope="col" style="position: sticky; top: 0; background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;username&lt;/th&gt;&lt;/tr&gt;&lt;tr style="background-color: var(--secondary-color, #eee)"&gt;&lt;th scope="row" style="color:black; background-color: #d6ecd4;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;0&lt;/th&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;Luiz Silva&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</msg>
+<msg time="2025-10-11T19:54:20.822169" level="INFO">${count} = 1</msg>
+<var>${count}</var>
+<arg>SELECT username FROM account WHERE username = '${USER}'</arg>
+<doc>Runs a query with the ``select_statement`` and returns the number of rows in the result.</doc>
+<status status="PASS" start="2025-10-11T19:54:20.815617" elapsed="0.006622"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-10-11T19:54:20.823037" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${count}</arg>
+<arg>1</arg>
+<arg>Registro para o usuário '${USER}' não encontrado</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-10-11T19:54:20.822551" elapsed="0.000626"/>
+</kw>
+<status status="PASS" start="2025-10-11T19:54:20.814928" elapsed="0.008416"/>
+</kw>
+<kw name="Desconectar do Banco de Dados" type="TEARDOWN">
+<kw name="Disconnect From Database" owner="DatabaseLibrary">
+<doc>Disconnects from the database.</doc>
+<status status="PASS" start="2025-10-11T19:54:20.824230" elapsed="0.000342"/>
+</kw>
+<status status="PASS" start="2025-10-11T19:54:20.823856" elapsed="0.000878"/>
+</kw>
+<status status="PASS" start="2025-10-11T19:54:20.702158" elapsed="0.122868"/>
+</test>
+<test id="s1-t3" name="Exemplo 03: Select Statement" line="29">
+<kw name="Conectar no Banco de Dados" type="SETUP">
+<kw name="Connect To Database" owner="DatabaseLibrary">
+<msg time="2025-10-11T19:54:20.828454" level="INFO">Looking for configuration file: 'resources\db.cfg'</msg>
+<msg time="2025-10-11T19:54:20.828688" level="INFO">Configuration file doesn't exist</msg>
+<msg time="2025-10-11T19:54:20.829215" level="INFO">Connect to DB using : psycopg2.connect(database='robot', user='postgres', password=***, host='localhost', port=5432)</msg>
+<arg>db_module=psycopg2</arg>
+<arg>db_name=robot</arg>
+<arg>db_user=postgres</arg>
+<arg>db_password=1234</arg>
+<arg>db_host=localhost</arg>
+<arg>db_port=5432</arg>
+<doc>Creates a database connection using the DB API 2.0 ``db_module`` and the parameters provided.
+Along with listed commonly used arguments (`db_name`, `db_host` etc.)
+you can set any other DB module specific parameters as key/value pairs.</doc>
+<status status="PASS" start="2025-10-11T19:54:20.827727" elapsed="0.095002"/>
+</kw>
+<status status="PASS" start="2025-10-11T19:54:20.827016" elapsed="0.095882"/>
+</kw>
+<kw name="Executar query no Banco de dados">
+<kw name="Query" owner="DatabaseLibrary">
+<msg time="2025-10-11T19:54:20.924087" level="INFO" html="true">Executing sql:&lt;br&gt;&lt;code style="font-weight: bold;"&gt;SELECT * from account&lt;/code&gt;</msg>
+<msg time="2025-10-11T19:54:20.928155" level="INFO">Commit the transaction</msg>
+<msg time="2025-10-11T19:54:20.928397" level="INFO" html="true">&lt;div style="max-width: 100%; overflow-x: auto; max-height: 500px; overflow-y: auto;"&gt;&lt;table style="width: auto; border-collapse: collapse; border: 2px solid rgb(140 140 140)"&gt;&lt;caption style="text-align: left; font-weight: bold; padding: 5px;"&gt;Query returned 2 rows&lt;/caption&gt;&lt;tr&gt;&lt;th scope="col" style="position: sticky; top: 0; color:black; background-color: #d6ecd4; border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;Row&lt;/th&gt;&lt;th scope="col" style="position: sticky; top: 0; background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;user_id&lt;/th&gt;&lt;th scope="col" style="position: sticky; top: 0; background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;username&lt;/th&gt;&lt;th scope="col" style="position: sticky; top: 0; background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;password&lt;/th&gt;&lt;th scope="col" style="position: sticky; top: 0; background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;email&lt;/th&gt;&lt;/tr&gt;&lt;tr style="background-color: var(--secondary-color, #eee)"&gt;&lt;th scope="row" style="color:black; background-color: #d6ecd4;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;0&lt;/th&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;1&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;May Fernandes&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;robot123&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;robotizando@robot.com&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th scope="row" style="color:black; background-color: #d6ecd4;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;1&lt;/th&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;2&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;Luiz Silva&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;robot987&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;robotizando2@robot.com&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</msg>
+<msg time="2025-10-11T19:54:20.928624" level="INFO">${RESPONSE_QUERY} = [(1, 'May Fernandes', 'robot123', 'robotizando@robot.com'), (2, 'Luiz Silva', 'robot987', 'robotizando2@robot.com')]</msg>
+<var>${RESPONSE_QUERY}</var>
+<arg>${QUERY}</arg>
+<doc>Runs a query with the ``select_statement`` and returns the result as list of rows.
+The type of row values depends on the database module -
+usually they are tuples or tuple-like objects.</doc>
+<status status="PASS" start="2025-10-11T19:54:20.923889" elapsed="0.004775"/>
+</kw>
+<return>
+<value>${RESPONSE_QUERY}</value>
+<status status="PASS" start="2025-10-11T19:54:20.928768" elapsed="0.000078"/>
+</return>
+<msg time="2025-10-11T19:54:20.929057" level="INFO">${RESPOSTA_SELECT} = [(1, 'May Fernandes', 'robot123', 'robotizando@robot.com'), (2, 'Luiz Silva', 'robot987', 'robotizando2@robot.com')]</msg>
+<var>${RESPOSTA_SELECT}</var>
+<arg>SELECT * from account</arg>
+<status status="PASS" start="2025-10-11T19:54:20.923387" elapsed="0.005708"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-10-11T19:54:20.929788" level="INFO">[(1, 'May Fernandes', 'robot123', 'robotizando@robot.com'), (2, 'Luiz Silva', 'robot987', 'robotizando2@robot.com')]</msg>
+<arg>${RESPOSTA_SELECT}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-10-11T19:54:20.929593" elapsed="0.000260"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-10-11T19:54:20.931530" level="INFO">Usuário 1 - Nome: May Fernandes - E-mail: robotizando@robot.com</msg>
+<arg>Usuário ${RESPOSTA_SELECT[0][0]} - Nome: ${RESPOSTA_SELECT[0][1]} - E-mail: ${RESPOSTA_SELECT[0][3]}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-10-11T19:54:20.930107" elapsed="0.001530"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-10-11T19:54:20.933174" level="INFO">Usuário 2 - Nome: Luiz Silva - E-mail: robotizando2@robot.com</msg>
+<arg>Usuário ${RESPOSTA_SELECT[1][0]} - Nome: ${RESPOSTA_SELECT[1][1]} - E-mail: ${RESPOSTA_SELECT[1][3]}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-10-11T19:54:20.931956" elapsed="0.001295"/>
+</kw>
+<kw name="Desconectar do Banco de Dados" type="TEARDOWN">
+<kw name="Disconnect From Database" owner="DatabaseLibrary">
+<doc>Disconnects from the database.</doc>
+<status status="PASS" start="2025-10-11T19:54:20.934183" elapsed="0.000342"/>
+</kw>
+<status status="PASS" start="2025-10-11T19:54:20.933676" elapsed="0.001024"/>
+</kw>
+<status status="PASS" start="2025-10-11T19:54:20.826227" elapsed="0.108757"/>
+</test>
+<test id="s1-t4" name="Exemplo 04: Limpando Tabelas" line="36">
+<kw name="Conectar no Banco de Dados" type="SETUP">
+<kw name="Connect To Database" owner="DatabaseLibrary">
+<msg time="2025-10-11T19:54:20.939146" level="INFO">Looking for configuration file: 'resources\db.cfg'</msg>
+<msg time="2025-10-11T19:54:20.939433" level="INFO">Configuration file doesn't exist</msg>
+<msg time="2025-10-11T19:54:20.940094" level="INFO">Connect to DB using : psycopg2.connect(database='robot', user='postgres', password=***, host='localhost', port=5432)</msg>
+<arg>db_module=psycopg2</arg>
+<arg>db_name=robot</arg>
+<arg>db_user=postgres</arg>
+<arg>db_password=1234</arg>
+<arg>db_host=localhost</arg>
+<arg>db_port=5432</arg>
+<doc>Creates a database connection using the DB API 2.0 ``db_module`` and the parameters provided.
+Along with listed commonly used arguments (`db_name`, `db_host` etc.)
+you can set any other DB module specific parameters as key/value pairs.</doc>
+<status status="PASS" start="2025-10-11T19:54:20.938366" elapsed="0.097020"/>
+</kw>
+<status status="PASS" start="2025-10-11T19:54:20.937646" elapsed="0.098007"/>
+</kw>
+<kw name="Limpar Tabela">
+<kw name="Row Count" owner="DatabaseLibrary">
+<msg time="2025-10-11T19:54:21.036928" level="INFO" html="true">Executing sql:&lt;br&gt;&lt;code style="font-weight: bold;"&gt;SELECT * FROM account&lt;/code&gt;</msg>
+<msg time="2025-10-11T19:54:21.042204" level="INFO">Commit the transaction</msg>
+<msg time="2025-10-11T19:54:21.042514" level="INFO">Retrieved 2 rows</msg>
+<msg time="2025-10-11T19:54:21.042642" level="INFO" html="true">&lt;div style="max-width: 100%; overflow-x: auto; max-height: 500px; overflow-y: auto;"&gt;&lt;table style="width: auto; border-collapse: collapse; border: 2px solid rgb(140 140 140)"&gt;&lt;caption style="text-align: left; font-weight: bold; padding: 5px;"&gt;Query returned 2 rows&lt;/caption&gt;&lt;tr&gt;&lt;th scope="col" style="position: sticky; top: 0; color:black; background-color: #d6ecd4; border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;Row&lt;/th&gt;&lt;th scope="col" style="position: sticky; top: 0; background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;user_id&lt;/th&gt;&lt;th scope="col" style="position: sticky; top: 0; background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;username&lt;/th&gt;&lt;th scope="col" style="position: sticky; top: 0; background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;password&lt;/th&gt;&lt;th scope="col" style="position: sticky; top: 0; background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;email&lt;/th&gt;&lt;/tr&gt;&lt;tr style="background-color: var(--secondary-color, #eee)"&gt;&lt;th scope="row" style="color:black; background-color: #d6ecd4;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;0&lt;/th&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;1&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;May Fernandes&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;robot123&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;robotizando@robot.com&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th scope="row" style="color:black; background-color: #d6ecd4;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;1&lt;/th&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;2&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;Luiz Silva&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;robot987&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;robotizando2@robot.com&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</msg>
+<msg time="2025-10-11T19:54:21.042941" level="INFO">${REGISTROS} = 2</msg>
+<var>${REGISTROS}</var>
+<arg>SELECT * FROM ${TABELA}</arg>
+<doc>Runs a query with the ``select_statement`` and returns the number of rows in the result.</doc>
+<status status="PASS" start="2025-10-11T19:54:21.036742" elapsed="0.006245"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Delete All Rows From Table" owner="DatabaseLibrary">
+<msg time="2025-10-11T19:54:21.043809" level="INFO" html="true">Executing sql:&lt;br&gt;&lt;code style="font-weight: bold;"&gt;DELETE FROM account&lt;/code&gt;</msg>
+<msg time="2025-10-11T19:54:21.044750" level="INFO">Commit the transaction</msg>
+<arg>${TABELA}</arg>
+<doc>Deletes all rows from table with ``table_name``.</doc>
+<status status="PASS" start="2025-10-11T19:54:21.043628" elapsed="0.006136"/>
+</kw>
+<arg>${REGISTROS} &gt; 0</arg>
+<arg>Delete All Rows From Table</arg>
+<arg>${TABELA}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-10-11T19:54:21.043221" elapsed="0.006719"/>
+</kw>
+<arg>account</arg>
+<status status="PASS" start="2025-10-11T19:54:21.036357" elapsed="0.013751"/>
+</kw>
+<kw name="Executar script via STRING no Banco de Dados">
+<kw name="Execute Sql String" owner="DatabaseLibrary">
+<msg time="2025-10-11T19:54:21.051626" level="INFO" html="true">Executing sql:&lt;br&gt;&lt;code style="font-weight: bold;"&gt;DROP table account&lt;/code&gt;</msg>
+<msg time="2025-10-11T19:54:21.058295" level="INFO">Commit the transaction</msg>
+<arg>${SCRIPT}</arg>
+<doc>Executes the ``sql_string`` as a single SQL command.</doc>
+<status status="PASS" start="2025-10-11T19:54:21.051291" elapsed="0.025215"/>
+</kw>
+<arg>DROP table account</arg>
+<status status="PASS" start="2025-10-11T19:54:21.050666" elapsed="0.026060"/>
+</kw>
+<kw name="Desconectar do Banco de Dados" type="TEARDOWN">
+<kw name="Disconnect From Database" owner="DatabaseLibrary">
+<doc>Disconnects from the database.</doc>
+<status status="PASS" start="2025-10-11T19:54:21.078068" elapsed="0.000416"/>
+</kw>
+<status status="PASS" start="2025-10-11T19:54:21.077447" elapsed="0.001216"/>
+</kw>
+<status status="PASS" start="2025-10-11T19:54:20.936360" elapsed="0.143864"/>
+</test>
+<doc>[14/10/2019] https://marketsquare.github.io/robotframework-databaselibrary/
+[Arguments]          ${SCRIPT}
+Execute SQL String   ${SCRIPT}
+[Arguments]         ${QUERY}
+${RESPONSE_QUERY}   Query   ${QUERY}
+RETURN    ${RESPONSE_QUERY}
+Instale: "pip install -U robotframework-databaselibrary"
+Para acessar o BD o Robot precisa conhecer o DRIVER de cada banco, então precisamos instalar esse DRIVER também (instale apenas para o BD que você utiliza!) ...
+Para PostgreSQL: "pip install psycopg2"
+Para SQLite 3: não precisa instalar nada!
+Para MySQL: "pip install pymysql"
+Para SQL Server: "pip install pymssql"
+Para Oracle: "pip install cx-Oracle"</doc>
+<status status="PASS" start="2025-10-11T19:54:20.360270" elapsed="0.722023"/>
+</suite>
+<statistics>
+<total>
+<stat pass="4" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Database" id="s1" pass="4" fail="0" skip="0">Database</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
