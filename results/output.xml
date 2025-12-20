@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3.2 (Python 3.13.2 on win32)" generated="2025-12-20T15:51:40.767884" rpa="false" schemaversion="5">
+<suite id="s1" name="RobotMay" source="C:\RobotMay">
+<suite id="s1-s1" name="SuiteSiteTestePracticePO antes de refatorar" source="C:\RobotMay\SuiteSiteTestePracticePO_antes_de_refatorar">
+<suite id="s1-s1-s1" name="Tests" source="C:\RobotMay\SuiteSiteTestePracticePO_antes_de_refatorar\tests">
+<suite id="s1-s1-s1-s1" name="TestSitePractice" source="C:\RobotMay\SuiteSiteTestePracticePO_antes_de_refatorar\tests\TestSitePractice.robot">
+<test id="s1-s1-s1-s1-t1" name="Caso de Teste com PO 01: Remover Produtos do Carrinho" line="7">
+<kw name="Abrir navegador" owner="Resource" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-12-20T15:51:41.380892" level="INFO">Opening browser 'chrome' to base url 'about:blank'.</msg>
+<arg>about:blank</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-12-20T15:51:41.380381" elapsed="3.335116"/>
+</kw>
+<status status="PASS" start="2025-12-20T15:51:41.379057" elapsed="3.337062"/>
+</kw>
+<kw name="Acessar a página home do site" owner="Resource">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-12-20T15:51:44.724242" level="INFO">Opening url 'http://automationpractice.com'</msg>
+<arg>${URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-12-20T15:51:44.722559" elapsed="1.336877"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<msg time="2025-12-20T15:51:51.259236" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-12-20T15:51:51.260050" level="FAIL">Element 'xpath=//*[@id="block_top_menu"]/ul' not visible after 5 seconds.</msg>
+<arg>xpath=//*[@id="block_top_menu"]/ul</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="FAIL" start="2025-12-20T15:51:46.060152" elapsed="5.213338">Element 'xpath=//*[@id="block_top_menu"]/ul' not visible after 5 seconds.</status>
+</kw>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<arg>My Store</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="NOT RUN" start="2025-12-20T15:51:51.273886" elapsed="0.000300"/>
+</kw>
+<status status="FAIL" start="2025-12-20T15:51:44.721391" elapsed="6.553071">Element 'xpath=//*[@id="block_top_menu"]/ul' not visible after 5 seconds.</status>
+</kw>
+<kw name="Adicionar o produto &quot;t-shirt&quot; no carrinho" owner="Resource" source_name="Adicionar o produto &quot;${PRODUTO}&quot; no carrinho">
+<status status="NOT RUN" start="2025-12-20T15:51:51.275225" elapsed="0.000433"/>
+</kw>
+<kw name="Excluir o produto do carrinho" owner="Resource">
+<status status="NOT RUN" start="2025-12-20T15:51:51.276140" elapsed="0.000282"/>
+</kw>
+<kw name="Conferir se o carrinho fica vazio" owner="Resource">
+<status status="NOT RUN" start="2025-12-20T15:51:51.276857" elapsed="0.000255"/>
+</kw>
+<kw name="Fechar navegador" owner="Resource" type="TEARDOWN">
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-12-20T15:51:51.278353" elapsed="2.292339"/>
+</kw>
+<status status="PASS" start="2025-12-20T15:51:51.277713" elapsed="2.293319"/>
+</kw>
+<status status="FAIL" start="2025-12-20T15:51:41.365489" elapsed="12.205974">Element 'xpath=//*[@id="block_top_menu"]/ul' not visible after 5 seconds.</status>
+</test>
+<status status="FAIL" start="2025-12-20T15:51:40.916440" elapsed="12.672977"/>
+</suite>
+<status status="FAIL" start="2025-12-20T15:51:40.906099" elapsed="12.690720"/>
+</suite>
+<status status="FAIL" start="2025-12-20T15:51:40.897303" elapsed="12.718487"/>
+</suite>
+<status status="FAIL" start="2025-12-20T15:51:40.780634" elapsed="12.851116"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="RobotMay" id="s1" pass="0" fail="1" skip="0">RobotMay</stat>
+<stat name="SuiteSiteTestePracticePO antes de refatorar" id="s1-s1" pass="0" fail="1" skip="0">RobotMay.SuiteSiteTestePracticePO antes de refatorar</stat>
+<stat name="Tests" id="s1-s1-s1" pass="0" fail="1" skip="0">RobotMay.SuiteSiteTestePracticePO antes de refatorar.Tests</stat>
+<stat name="TestSitePractice" id="s1-s1-s1-s1" pass="0" fail="1" skip="0">RobotMay.SuiteSiteTestePracticePO antes de refatorar.Tests.TestSitePractice</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
