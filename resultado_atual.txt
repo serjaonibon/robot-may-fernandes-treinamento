@@ -1,3 +1,0 @@
-Linha 1: Início da saída
-Linha 2: Processamento ALTERADO
-Linha 3: Dados finais ok.

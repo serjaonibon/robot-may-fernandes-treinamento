@@ -1,66 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.3.2 (Python 3.13.2 on win32)" generated="2025-12-20T15:51:40.767884" rpa="false" schemaversion="5">
+<robot generator="Robot 7.3.2 (Python 3.13.2 on win32)" generated="2025-12-20T17:28:37.286725" rpa="false" schemaversion="5">
 <suite id="s1" name="RobotMay" source="C:\RobotMay">
-<suite id="s1-s1" name="SuiteSiteTestePracticePO antes de refatorar" source="C:\RobotMay\SuiteSiteTestePracticePO_antes_de_refatorar">
-<suite id="s1-s1-s1" name="Tests" source="C:\RobotMay\SuiteSiteTestePracticePO_antes_de_refatorar\tests">
-<suite id="s1-s1-s1-s1" name="TestSitePractice" source="C:\RobotMay\SuiteSiteTestePracticePO_antes_de_refatorar\tests\TestSitePractice.robot">
-<test id="s1-s1-s1-s1-t1" name="Caso de Teste com PO 01: Remover Produtos do Carrinho" line="7">
-<kw name="Abrir navegador" owner="Resource" type="SETUP">
-<kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2025-12-20T15:51:41.380892" level="INFO">Opening browser 'chrome' to base url 'about:blank'.</msg>
-<arg>about:blank</arg>
-<arg>${BROWSER}</arg>
-<doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2025-12-20T15:51:41.380381" elapsed="3.335116"/>
+<suite id="s1-s1" name="APIAdvanced" source="C:\RobotMay\APIAdvanced">
+<suite id="s1-s1-s1" name="Headers Params Auth" source="C:\RobotMay\APIAdvanced\headers_params_auth.robot">
+<test id="s1-s1-s1-t1" name="Exemplo: Fazendo autenticação básica (Basic Authentication)" line="13">
+<kw name="Conectar com autenticação por token na API do GitHub">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-12-20T17:28:37.632198" level="INFO">${HEADERS} = {'Authorization': 'Bearer coloqueSeuTokenAqui'}</msg>
+<var>${HEADERS}</var>
+<arg>Authorization=Bearer ${MY_GITHUB_TOKEN}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-12-20T17:28:37.631473" elapsed="0.001232"/>
 </kw>
-<status status="PASS" start="2025-12-20T15:51:41.379057" elapsed="3.337062"/>
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-12-20T17:28:37.634701" level="INFO">Creating Session using : alias=mygithubAuth, url=https://api.github.com, headers={'Authorization': 'Bearer coloqueSeuTokenAqui'},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>alias=mygithubAuth</arg>
+<arg>url=${GITHUB_HOST}</arg>
+<arg>headers=${HEADERS}</arg>
+<arg>disable_warnings=True</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-12-20T17:28:37.633083" elapsed="0.002276"/>
 </kw>
-<kw name="Acessar a página home do site" owner="Resource">
-<kw name="Go To" owner="SeleniumLibrary">
-<msg time="2025-12-20T15:51:44.724242" level="INFO">Opening url 'http://automationpractice.com'</msg>
-<arg>${URL}</arg>
-<doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2025-12-20T15:51:44.722559" elapsed="1.336877"/>
+<status status="PASS" start="2025-12-20T17:28:37.630329" elapsed="0.005264"/>
 </kw>
-<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<msg time="2025-12-20T15:51:51.259236" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg time="2025-12-20T15:51:51.260050" level="FAIL">Element 'xpath=//*[@id="block_top_menu"]/ul' not visible after 5 seconds.</msg>
-<arg>xpath=//*[@id="block_top_menu"]/ul</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="FAIL" start="2025-12-20T15:51:46.060152" elapsed="5.213338">Element 'xpath=//*[@id="block_top_menu"]/ul' not visible after 5 seconds.</status>
+<kw name="Solicitar os dados do meu usuário">
+<kw name="Get Request" owner="RequestsLibrary">
+<msg time="2025-12-20T17:28:37.636781" level="WARN">Keyword 'RequestsLibrary.Get Request' is deprecated. Please use `GET On Session` instead.</msg>
+<msg time="2025-12-20T17:28:38.059245" level="INFO">GET Request : url=https://api.github.com/user 
+ path_url=/user 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer coloqueSeuTokenAqui'} 
+ body=None 
+ </msg>
+<msg time="2025-12-20T17:28:38.059598" level="INFO">GET Response : url=https://api.github.com/user 
+ status=401, reason=Unauthorized 
+ headers={'Content-Type': 'application/json; charset=utf-8', 'X-GitHub-Media-Type': 'github.v3; format=json', 'Access-Control-Expose-Headers': 'ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset', 'Access-Control-Allow-Origin': '*', 'Strict-Transport-Security': 'max-age=31536000; includeSubdomains; preload', 'X-Frame-Options': 'deny', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '0', 'Referrer-Policy': 'origin-when-cross-origin, strict-origin-when-cross-origin', 'Content-Security-Policy': "default-src 'none'", 'Vary': 'Accept-Encoding, Accept, X-Requested-With', 'Server': 'github.com', 'Date': 'Sat, 20 Dec 2025 20:28:38 GMT', 'X-GitHub-Request-Id': 'C328:2C7EC1:2C1EEED:2F808FF:694706F6', 'connection': 'close'} 
+ body={
+  "message": "Bad credentials",
+  "documentation_url": "https://docs.github.com/rest",
+  "status": "401"
+} 
+ </msg>
+<msg time="2025-12-20T17:28:38.059895" level="INFO">${MY_USER_DATA} = &lt;Response [401]&gt;</msg>
+<var>${MY_USER_DATA}</var>
+<arg>alias=mygithubAuth</arg>
+<arg>uri=/user</arg>
+<doc>*DEPRECATED* Please use `GET On Session` instead.</doc>
+<status status="PASS" start="2025-12-20T17:28:37.636568" elapsed="0.423700"/>
 </kw>
-<kw name="Title Should Be" owner="SeleniumLibrary">
-<arg>My Store</arg>
-<doc>Verifies that the current page title equals ``title``.</doc>
-<status status="NOT RUN" start="2025-12-20T15:51:51.273886" elapsed="0.000300"/>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-12-20T17:28:38.062028" level="INFO">Meus dados: {'message': 'Bad credentials', 'documentation_url': 'https://docs.github.com/rest', 'status': '401'}</msg>
+<arg>Meus dados: ${MY_USER_DATA.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-12-20T17:28:38.060596" elapsed="0.001783"/>
 </kw>
-<status status="FAIL" start="2025-12-20T15:51:44.721391" elapsed="6.553071">Element 'xpath=//*[@id="block_top_menu"]/ul' not visible after 5 seconds.</status>
+<kw name="Confere sucesso na requisição">
+<kw name="Should Be True" owner="BuiltIn">
+<msg time="2025-12-20T17:28:38.066116" level="FAIL">Erro na requisição! Verifique: &lt;Response [401]&gt;</msg>
+<arg>'${RESPONSE.status_code}'=='200' or '${RESPONSE.status_code}'=='201'</arg>
+<arg>msg=Erro na requisição! Verifique: ${RESPONSE}</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="FAIL" start="2025-12-20T17:28:38.063687" elapsed="0.008470">Erro na requisição! Verifique: &lt;Response [401]&gt;</status>
 </kw>
-<kw name="Adicionar o produto &quot;t-shirt&quot; no carrinho" owner="Resource" source_name="Adicionar o produto &quot;${PRODUTO}&quot; no carrinho">
-<status status="NOT RUN" start="2025-12-20T15:51:51.275225" elapsed="0.000433"/>
+<arg>${MY_USER_DATA}</arg>
+<status status="FAIL" start="2025-12-20T17:28:38.062873" elapsed="0.009623">Erro na requisição! Verifique: &lt;Response [401]&gt;</status>
 </kw>
-<kw name="Excluir o produto do carrinho" owner="Resource">
-<status status="NOT RUN" start="2025-12-20T15:51:51.276140" elapsed="0.000282"/>
+<status status="FAIL" start="2025-12-20T17:28:37.636019" elapsed="0.436671">Erro na requisição! Verifique: &lt;Response [401]&gt;</status>
 </kw>
-<kw name="Conferir se o carrinho fica vazio" owner="Resource">
-<status status="NOT RUN" start="2025-12-20T15:51:51.276857" elapsed="0.000255"/>
-</kw>
-<kw name="Fechar navegador" owner="Resource" type="TEARDOWN">
-<kw name="Close Browser" owner="SeleniumLibrary">
-<doc>Closes the current browser.</doc>
-<status status="PASS" start="2025-12-20T15:51:51.278353" elapsed="2.292339"/>
-</kw>
-<status status="PASS" start="2025-12-20T15:51:51.277713" elapsed="2.293319"/>
-</kw>
-<status status="FAIL" start="2025-12-20T15:51:41.365489" elapsed="12.205974">Element 'xpath=//*[@id="block_top_menu"]/ul' not visible after 5 seconds.</status>
+<status status="FAIL" start="2025-12-20T17:28:37.624305" elapsed="0.448856">Erro na requisição! Verifique: &lt;Response [401]&gt;</status>
 </test>
-<status status="FAIL" start="2025-12-20T15:51:40.916440" elapsed="12.672977"/>
+<doc>Exemplos da própria Library: https://github.com/bulkan/robotframework-requests/blob/master/tests/testcase.robot
+Doc da API do GitHub: https://developer.github.com/v3/</doc>
+<status status="FAIL" start="2025-12-20T17:28:37.430260" elapsed="0.667623"/>
 </suite>
-<status status="FAIL" start="2025-12-20T15:51:40.906099" elapsed="12.690720"/>
+<status status="FAIL" start="2025-12-20T17:28:37.423399" elapsed="0.681276"/>
 </suite>
-<status status="FAIL" start="2025-12-20T15:51:40.897303" elapsed="12.718487"/>
-</suite>
-<status status="FAIL" start="2025-12-20T15:51:40.780634" elapsed="12.851116"/>
+<status status="FAIL" start="2025-12-20T17:28:37.295041" elapsed="0.815777"/>
 </suite>
 <statistics>
 <total>
@@ -70,11 +84,11 @@
 </tag>
 <suite>
 <stat name="RobotMay" id="s1" pass="0" fail="1" skip="0">RobotMay</stat>
-<stat name="SuiteSiteTestePracticePO antes de refatorar" id="s1-s1" pass="0" fail="1" skip="0">RobotMay.SuiteSiteTestePracticePO antes de refatorar</stat>
-<stat name="Tests" id="s1-s1-s1" pass="0" fail="1" skip="0">RobotMay.SuiteSiteTestePracticePO antes de refatorar.Tests</stat>
-<stat name="TestSitePractice" id="s1-s1-s1-s1" pass="0" fail="1" skip="0">RobotMay.SuiteSiteTestePracticePO antes de refatorar.Tests.TestSitePractice</stat>
+<stat name="APIAdvanced" id="s1-s1" pass="0" fail="1" skip="0">RobotMay.APIAdvanced</stat>
+<stat name="Headers Params Auth" id="s1-s1-s1" pass="0" fail="1" skip="0">RobotMay.APIAdvanced.Headers Params Auth</stat>
 </suite>
 </statistics>
 <errors>
+<msg time="2025-12-20T17:28:37.636781" level="WARN">Keyword 'RequestsLibrary.Get Request' is deprecated. Please use `GET On Session` instead.</msg>
 </errors>
 </robot>
