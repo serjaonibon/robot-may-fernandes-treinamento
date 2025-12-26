@@ -15,4 +15,11 @@ docker rmi nome_da_sua_imagem
 docker run --rm --name execucao_robot -v "diretorio_local_suites":/opt/robotframework/tests -v "diretorio_local_resultados":/opt/robotframework/results nome_da_sua_imagem:lastest comando_que_executará_os_testes_do_robot
 
 
-Exemplo: docker run --rm --name execucao_robot -v "C:\RobotFramework\AdvancedProjects\Docker\suites":/opt/robotframework/tests -v "C:\RobotFramework\AdvancedProjects\Docker\suites\results":/opt/robotframework/results run_robot:latest robot -d /opt/robotframework/results /opt/robotframework/tests
+Exemplo (ANTIGO - não funciona no Windows com Git Bash):
+docker run --rm --name execucao_robot -v "C:\RobotFramework\AdvancedProjects\Docker\suites":/opt/robotframework/tests -v "C:\RobotFramework\AdvancedProjects\Docker\suites\results":/opt/robotframework/results run_robot:latest robot -d /opt/robotframework/results /opt/robotframework/tests
+
+Exemplo (CORRETO para C:\RobotMay no Git Bash):
+MSYS_NO_PATHCONV=1 docker run --rm --name execucao_robot -v "C:/RobotMay/docker/suites":/opt/robotframework/tests -v "C:/RobotMay/docker/suites/results":/opt/robotframework/results run_robot:latest robot -d /opt/robotframework/results /opt/robotframework/tests
+
+
+MSYS_NO_PATHCONV=1 docker run --rm --name execucao_robot -v "C:/RobotMay/docker/suites":/opt/robotframework/tests -v "C:/RobotMay/docker/suites/results":/opt/robotframework/results run_robot:latest robot -d /opt/robotframework/results /opt/robotframework/tests

@@ -1,94 +1,203 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.3.2 (Python 3.13.2 on win32)" generated="2025-12-20T17:28:37.286725" rpa="false" schemaversion="5">
+<robot generator="Robot 7.3.2 (Python 3.13.2 on win32)" generated="2025-12-26T20:15:18.727769" rpa="false" schemaversion="5">
 <suite id="s1" name="RobotMay" source="C:\RobotMay">
-<suite id="s1-s1" name="APIAdvanced" source="C:\RobotMay\APIAdvanced">
-<suite id="s1-s1-s1" name="Headers Params Auth" source="C:\RobotMay\APIAdvanced\headers_params_auth.robot">
-<test id="s1-s1-s1-t1" name="Exemplo: Fazendo autenticação básica (Basic Authentication)" line="13">
-<kw name="Conectar com autenticação por token na API do GitHub">
-<kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2025-12-20T17:28:37.632198" level="INFO">${HEADERS} = {'Authorization': 'Bearer coloqueSeuTokenAqui'}</msg>
-<var>${HEADERS}</var>
-<arg>Authorization=Bearer ${MY_GITHUB_TOKEN}</arg>
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2025-12-20T17:28:37.631473" elapsed="0.001232"/>
+<suite id="s1-s1" name="Docker" source="C:\RobotMay\docker">
+<suite id="s1-s1-s1" name="Suites" source="C:\RobotMay\docker\suites">
+<suite id="s1-s1-s1-s1" name="TestCaseExemploFakerLibrary" source="C:\RobotMay\docker\suites\TestCaseExemploFakerLibrary.robot">
+<test id="s1-s1-s1-s1-t1" name="Imprime exemplos de utilidades da library FakerLibrary" line="6">
+<kw name="Exemplos relacionados a pessoa">
+<kw name="Name" owner="FakerLibrary">
+<msg time="2025-12-26T20:15:19.789443" level="INFO">${NOMEFAKE} = Michael Bautista</msg>
+<var>${NOMEFAKE}</var>
+<doc>:example: 'John Doe'</doc>
+<status status="PASS" start="2025-12-26T20:15:19.788680" elapsed="0.001550"/>
 </kw>
-<kw name="Create Session" owner="RequestsLibrary">
-<msg time="2025-12-20T17:28:37.634701" level="INFO">Creating Session using : alias=mygithubAuth, url=https://api.github.com, headers={'Authorization': 'Bearer coloqueSeuTokenAqui'},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<arg>alias=mygithubAuth</arg>
-<arg>url=${GITHUB_HOST}</arg>
-<arg>headers=${HEADERS}</arg>
-<arg>disable_warnings=True</arg>
-<doc>Create Session: create a HTTP session to a server</doc>
-<status status="PASS" start="2025-12-20T17:28:37.633083" elapsed="0.002276"/>
+<kw name="Address" owner="FakerLibrary">
+<msg time="2025-12-26T20:15:19.791868" level="INFO">${ENDERECOFAKE} = 0040 Tyrone Manors
+Nguyenside, HI 53125</msg>
+<var>${ENDERECOFAKE}</var>
+<doc>:example: '791 Crist Parks, Sashabury, IL 86039-9874'</doc>
+<status status="PASS" start="2025-12-26T20:15:19.790568" elapsed="0.001614"/>
 </kw>
-<status status="PASS" start="2025-12-20T17:28:37.630329" elapsed="0.005264"/>
+<kw name="Phone Number" owner="FakerLibrary">
+<msg time="2025-12-26T20:15:19.793420" level="INFO">${TELEFONEFAKE} = 623-466-3382</msg>
+<var>${TELEFONEFAKE}</var>
+<status status="PASS" start="2025-12-26T20:15:19.792607" elapsed="0.001168"/>
 </kw>
-<kw name="Solicitar os dados do meu usuário">
-<kw name="Get Request" owner="RequestsLibrary">
-<msg time="2025-12-20T17:28:37.636781" level="WARN">Keyword 'RequestsLibrary.Get Request' is deprecated. Please use `GET On Session` instead.</msg>
-<msg time="2025-12-20T17:28:38.059245" level="INFO">GET Request : url=https://api.github.com/user 
- path_url=/user 
- headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer coloqueSeuTokenAqui'} 
- body=None 
- </msg>
-<msg time="2025-12-20T17:28:38.059598" level="INFO">GET Response : url=https://api.github.com/user 
- status=401, reason=Unauthorized 
- headers={'Content-Type': 'application/json; charset=utf-8', 'X-GitHub-Media-Type': 'github.v3; format=json', 'Access-Control-Expose-Headers': 'ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset', 'Access-Control-Allow-Origin': '*', 'Strict-Transport-Security': 'max-age=31536000; includeSubdomains; preload', 'X-Frame-Options': 'deny', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '0', 'Referrer-Policy': 'origin-when-cross-origin, strict-origin-when-cross-origin', 'Content-Security-Policy': "default-src 'none'", 'Vary': 'Accept-Encoding, Accept, X-Requested-With', 'Server': 'github.com', 'Date': 'Sat, 20 Dec 2025 20:28:38 GMT', 'X-GitHub-Request-Id': 'C328:2C7EC1:2C1EEED:2F808FF:694706F6', 'connection': 'close'} 
- body={
-  "message": "Bad credentials",
-  "documentation_url": "https://docs.github.com/rest",
-  "status": "401"
-} 
- </msg>
-<msg time="2025-12-20T17:28:38.059895" level="INFO">${MY_USER_DATA} = &lt;Response [401]&gt;</msg>
-<var>${MY_USER_DATA}</var>
-<arg>alias=mygithubAuth</arg>
-<arg>uri=/user</arg>
-<doc>*DEPRECATED* Please use `GET On Session` instead.</doc>
-<status status="PASS" start="2025-12-20T17:28:37.636568" elapsed="0.423700"/>
+<kw name="City" owner="FakerLibrary">
+<msg time="2025-12-26T20:15:19.795131" level="INFO">${CIDADEFAKE} = Devonmouth</msg>
+<var>${CIDADEFAKE}</var>
+<doc>:example: 'Sashabury'</doc>
+<status status="PASS" start="2025-12-26T20:15:19.794190" elapsed="0.001308"/>
 </kw>
-<kw name="Log" owner="BuiltIn">
-<msg time="2025-12-20T17:28:38.062028" level="INFO">Meus dados: {'message': 'Bad credentials', 'documentation_url': 'https://docs.github.com/rest', 'status': '401'}</msg>
-<arg>Meus dados: ${MY_USER_DATA.json()}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-12-20T17:28:38.060596" elapsed="0.001783"/>
+<kw name="Postalcode" owner="FakerLibrary">
+<msg time="2025-12-26T20:15:19.796461" level="INFO">${CODIGOPOSTALFAKE} = 92847</msg>
+<var>${CODIGOPOSTALFAKE}</var>
+<status status="PASS" start="2025-12-26T20:15:19.795897" elapsed="0.000848"/>
 </kw>
-<kw name="Confere sucesso na requisição">
-<kw name="Should Be True" owner="BuiltIn">
-<msg time="2025-12-20T17:28:38.066116" level="FAIL">Erro na requisição! Verifique: &lt;Response [401]&gt;</msg>
-<arg>'${RESPONSE.status_code}'=='200' or '${RESPONSE.status_code}'=='201'</arg>
-<arg>msg=Erro na requisição! Verifique: ${RESPONSE}</arg>
-<doc>Fails if the given condition is not true.</doc>
-<status status="FAIL" start="2025-12-20T17:28:38.063687" elapsed="0.008470">Erro na requisição! Verifique: &lt;Response [401]&gt;</status>
+<kw name="Job" owner="FakerLibrary">
+<msg time="2025-12-26T20:15:19.797750" level="INFO">${TRABALHOFAKE} = Engineer, structural</msg>
+<var>${TRABALHOFAKE}</var>
+<status status="PASS" start="2025-12-26T20:15:19.797115" elapsed="0.000873"/>
 </kw>
-<arg>${MY_USER_DATA}</arg>
-<status status="FAIL" start="2025-12-20T17:28:38.062873" elapsed="0.009623">Erro na requisição! Verifique: &lt;Response [401]&gt;</status>
+<kw name="Create List" owner="BuiltIn">
+<msg time="2025-12-26T20:15:19.802537" level="INFO">@{PESSOA} = [ Nome Aleatório: Michael Bautista | Endereço Aleatório: 0040 Tyrone Manors
+Nguyenside, HI 53125 | Telefone Aleatório: 623-466-3382 | Cidade Aleatória: Devonmouth | CódigoPostal Aleatório: 92847 | Tra...</msg>
+<var>@{PESSOA}</var>
+<arg>Nome Aleatório: ${NOMEFAKE}</arg>
+<arg>Endereço Aleatório: ${ENDERECOFAKE}</arg>
+<arg>Telefone Aleatório: ${TELEFONEFAKE}</arg>
+<arg>Cidade Aleatória: ${CIDADEFAKE}</arg>
+<arg>CódigoPostal Aleatório: ${CODIGOPOSTALFAKE}</arg>
+<arg>Trabalho: ${TRABALHOFAKE}</arg>
+<doc>Returns a list containing given items.</doc>
+<status status="PASS" start="2025-12-26T20:15:19.799207" elapsed="0.003588"/>
 </kw>
-<status status="FAIL" start="2025-12-20T17:28:37.636019" elapsed="0.436671">Erro na requisição! Verifique: &lt;Response [401]&gt;</status>
+<kw name="Log Many" owner="BuiltIn">
+<msg time="2025-12-26T20:15:19.803547" level="INFO">Nome Aleatório: Michael Bautista</msg>
+<msg time="2025-12-26T20:15:19.803774" level="INFO">Endereço Aleatório: 0040 Tyrone Manors
+Nguyenside, HI 53125</msg>
+<msg time="2025-12-26T20:15:19.803954" level="INFO">Telefone Aleatório: 623-466-3382</msg>
+<msg time="2025-12-26T20:15:19.804195" level="INFO">Cidade Aleatória: Devonmouth</msg>
+<msg time="2025-12-26T20:15:19.804402" level="INFO">CódigoPostal Aleatório: 92847</msg>
+<msg time="2025-12-26T20:15:19.804812" level="INFO">Trabalho: Engineer, structural</msg>
+<arg>@{PESSOA}</arg>
+<doc>Logs the given messages as separate entries using the INFO level.</doc>
+<status status="PASS" start="2025-12-26T20:15:19.803086" elapsed="0.002038"/>
 </kw>
-<status status="FAIL" start="2025-12-20T17:28:37.624305" elapsed="0.448856">Erro na requisição! Verifique: &lt;Response [401]&gt;</status>
+<status status="PASS" start="2025-12-26T20:15:19.787446" elapsed="0.017920"/>
+</kw>
+<kw name="Exemplos relacionados a datas">
+<kw name="Date" owner="FakerLibrary">
+<msg time="2025-12-26T20:15:19.808279" level="INFO">${DATAFAKE} = 1990-09-21</msg>
+<var>${DATAFAKE}</var>
+<doc>Get a date string between January 1, 1970 and now.</doc>
+<status status="PASS" start="2025-12-26T20:15:19.807437" elapsed="0.001339"/>
+</kw>
+<kw name="Month" owner="FakerLibrary">
+<msg time="2025-12-26T20:15:19.809618" level="INFO">${MESFAKE} = 07</msg>
+<var>${MESFAKE}</var>
+<doc>:sample:</doc>
+<status status="PASS" start="2025-12-26T20:15:19.809014" elapsed="0.000799"/>
+</kw>
+<kw name="Year" owner="FakerLibrary">
+<msg time="2025-12-26T20:15:19.810432" level="INFO">${ANOFAKE} = 2015</msg>
+<var>${ANOFAKE}</var>
+<doc>:sample:</doc>
+<status status="PASS" start="2025-12-26T20:15:19.810007" elapsed="0.000613"/>
+</kw>
+<kw name="Day Of Week" owner="FakerLibrary">
+<msg time="2025-12-26T20:15:19.811389" level="INFO">${DIADASEMANAFAKE} = Sunday</msg>
+<var>${DIADASEMANAFAKE}</var>
+<doc>:sample:</doc>
+<status status="PASS" start="2025-12-26T20:15:19.810833" elapsed="0.000725"/>
+</kw>
+<kw name="Day Of Month" owner="FakerLibrary">
+<msg time="2025-12-26T20:15:19.812291" level="INFO">${DIADOMESFAKE} = 10</msg>
+<var>${DIADOMESFAKE}</var>
+<doc>:sample:</doc>
+<status status="PASS" start="2025-12-26T20:15:19.811784" elapsed="0.000737"/>
+</kw>
+<kw name="Create List" owner="BuiltIn">
+<msg time="2025-12-26T20:15:19.813330" level="INFO">@{DATAS} = [ Data Aleatória: 1990-09-21 | Mês Aleatório: 07 | Ano Aleatório: 2015 | Dia da Semana Aleatório: Sunday | Dia do Mês Aleatório: 10 ]</msg>
+<var>@{DATAS}</var>
+<arg>Data Aleatória: ${DATAFAKE}</arg>
+<arg>Mês Aleatório: ${MESFAKE}</arg>
+<arg>Ano Aleatório: ${ANOFAKE}</arg>
+<arg>Dia da Semana Aleatório: ${DIADASEMANAFAKE}</arg>
+<arg>Dia do Mês Aleatório: ${DIADOMESFAKE}</arg>
+<doc>Returns a list containing given items.</doc>
+<status status="PASS" start="2025-12-26T20:15:19.812708" elapsed="0.000815"/>
+</kw>
+<kw name="Log Many" owner="BuiltIn">
+<msg time="2025-12-26T20:15:19.814127" level="INFO">Data Aleatória: 1990-09-21</msg>
+<msg time="2025-12-26T20:15:19.814348" level="INFO">Mês Aleatório: 07</msg>
+<msg time="2025-12-26T20:15:19.814598" level="INFO">Ano Aleatório: 2015</msg>
+<msg time="2025-12-26T20:15:19.814775" level="INFO">Dia da Semana Aleatório: Sunday</msg>
+<msg time="2025-12-26T20:15:19.815004" level="INFO">Dia do Mês Aleatório: 10</msg>
+<arg>@{DATAS}</arg>
+<doc>Logs the given messages as separate entries using the INFO level.</doc>
+<status status="PASS" start="2025-12-26T20:15:19.813736" elapsed="0.001775"/>
+</kw>
+<status status="PASS" start="2025-12-26T20:15:19.806424" elapsed="0.009421"/>
+</kw>
+<kw name="Exemplos diversos">
+<kw name="Email" owner="FakerLibrary">
+<msg time="2025-12-26T20:15:19.818606" level="INFO">${EMAILFAKE} = masonsylvia@example.com</msg>
+<var>${EMAILFAKE}</var>
+<status status="PASS" start="2025-12-26T20:15:19.817258" elapsed="0.001844"/>
+</kw>
+<kw name="Password" owner="FakerLibrary">
+<msg time="2025-12-26T20:15:19.820270" level="INFO">${PASSWORDFAKE} = (#&amp;1X7Wit1</msg>
+<var>${PASSWORDFAKE}</var>
+<doc>Generate a random password of the specified ``length``.</doc>
+<status status="PASS" start="2025-12-26T20:15:19.819377" elapsed="0.001213"/>
+</kw>
+<kw name="Color Name" owner="FakerLibrary">
+<msg time="2025-12-26T20:15:19.821285" level="INFO">${CORFAKE} = DeepSkyBlue</msg>
+<var>${CORFAKE}</var>
+<doc>Generate a color name.</doc>
+<status status="PASS" start="2025-12-26T20:15:19.820822" elapsed="0.000632"/>
+</kw>
+<kw name="Credit Card Number" owner="FakerLibrary">
+<msg time="2025-12-26T20:15:19.822680" level="INFO">${CARTAODECREDITOFAKE} = 4565558314202474275</msg>
+<var>${CARTAODECREDITOFAKE}</var>
+<doc>Generate a valid credit card number.</doc>
+<status status="PASS" start="2025-12-26T20:15:19.821808" elapsed="0.001043"/>
+</kw>
+<kw name="Word" owner="FakerLibrary">
+<msg time="2025-12-26T20:15:19.823560" level="INFO">${PALAVRAFAKE} = face</msg>
+<var>${PALAVRAFAKE}</var>
+<doc>Generate a word.</doc>
+<status status="PASS" start="2025-12-26T20:15:19.823062" elapsed="0.000680"/>
+</kw>
+<kw name="Create List" owner="BuiltIn">
+<msg time="2025-12-26T20:15:19.824641" level="INFO">@{OUTROS} = [ E-mail Aleatório: masonsylvia@example.com | Senha Aleatória: (#&amp;1X7Wit1 | Cor Aleatório: DeepSkyBlue | Cartão de Crédito Aleatório: 4565558314202474275 | Palavra Aleatória: face ]</msg>
+<var>@{OUTROS}</var>
+<arg>E-mail Aleatório: ${EMAILFAKE}</arg>
+<arg>Senha Aleatória: ${PASSWORDFAKE}</arg>
+<arg>Cor Aleatório: ${CORFAKE}</arg>
+<arg>Cartão de Crédito Aleatório: ${CARTAODECREDITOFAKE}</arg>
+<arg>Palavra Aleatória: ${PALAVRAFAKE}</arg>
+<doc>Returns a list containing given items.</doc>
+<status status="PASS" start="2025-12-26T20:15:19.823937" elapsed="0.001166"/>
+</kw>
+<kw name="Log Many" owner="BuiltIn">
+<msg time="2025-12-26T20:15:19.825782" level="INFO">E-mail Aleatório: masonsylvia@example.com</msg>
+<msg time="2025-12-26T20:15:19.826107" level="INFO">Senha Aleatória: (#&amp;1X7Wit1</msg>
+<msg time="2025-12-26T20:15:19.826322" level="INFO">Cor Aleatório: DeepSkyBlue</msg>
+<msg time="2025-12-26T20:15:19.826568" level="INFO">Cartão de Crédito Aleatório: 4565558314202474275</msg>
+<msg time="2025-12-26T20:15:19.826752" level="INFO">Palavra Aleatória: face</msg>
+<arg>@{OUTROS}</arg>
+<doc>Logs the given messages as separate entries using the INFO level.</doc>
+<status status="PASS" start="2025-12-26T20:15:19.825386" elapsed="0.001686"/>
+</kw>
+<status status="PASS" start="2025-12-26T20:15:19.816460" elapsed="0.010949"/>
+</kw>
+<status status="PASS" start="2025-12-26T20:15:19.781298" elapsed="0.046590"/>
 </test>
-<doc>Exemplos da própria Library: https://github.com/bulkan/robotframework-requests/blob/master/tests/testcase.robot
-Doc da API do GitHub: https://developer.github.com/v3/</doc>
-<status status="FAIL" start="2025-12-20T17:28:37.430260" elapsed="0.667623"/>
+<doc>Exemplo de uso da Library Faker</doc>
+<status status="PASS" start="2025-12-26T20:15:18.977971" elapsed="0.858222"/>
 </suite>
-<status status="FAIL" start="2025-12-20T17:28:37.423399" elapsed="0.681276"/>
+<status status="PASS" start="2025-12-26T20:15:18.960615" elapsed="0.882306"/>
 </suite>
-<status status="FAIL" start="2025-12-20T17:28:37.295041" elapsed="0.815777"/>
+<status status="PASS" start="2025-12-26T20:15:18.948386" elapsed="0.899280"/>
+</suite>
+<status status="PASS" start="2025-12-26T20:15:18.742111" elapsed="1.202696"/>
 </suite>
 <statistics>
 <total>
-<stat pass="0" fail="1" skip="0">All Tests</stat>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat name="RobotMay" id="s1" pass="0" fail="1" skip="0">RobotMay</stat>
-<stat name="APIAdvanced" id="s1-s1" pass="0" fail="1" skip="0">RobotMay.APIAdvanced</stat>
-<stat name="Headers Params Auth" id="s1-s1-s1" pass="0" fail="1" skip="0">RobotMay.APIAdvanced.Headers Params Auth</stat>
+<stat name="RobotMay" id="s1" pass="1" fail="0" skip="0">RobotMay</stat>
+<stat name="Docker" id="s1-s1" pass="1" fail="0" skip="0">RobotMay.Docker</stat>
+<stat name="Suites" id="s1-s1-s1" pass="1" fail="0" skip="0">RobotMay.Docker.Suites</stat>
+<stat name="TestCaseExemploFakerLibrary" id="s1-s1-s1-s1" pass="1" fail="0" skip="0">RobotMay.Docker.Suites.TestCaseExemploFakerLibrary</stat>
 </suite>
 </statistics>
 <errors>
-<msg time="2025-12-20T17:28:37.636781" level="WARN">Keyword 'RequestsLibrary.Get Request' is deprecated. Please use `GET On Session` instead.</msg>
 </errors>
 </robot>
